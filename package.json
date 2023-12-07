@@ -1,0 +1,9 @@
+{
+	"name": "advent-2023",
+	"type": "module",
+	"private": true,
+	"dependencies": {},
+	"devDependencies": {
+		"bun-types": "^1.0.15"
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "NodeNext",
+		"checkJs": true,
+		"types": ["bun-types"]
+	}
+}
