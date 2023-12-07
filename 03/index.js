@@ -4,32 +4,32 @@ const file = Bun.file(new URL(filename, import.meta.url));
 const text = await file.text();
 const inputLines = text.split("\n").filter((x) => x);
 
-const allNumberPostions = inputLines.flatMap((line, lineNumber) => {
-	return [...line.matchAll(/\d+/dg)].map((match) => {
+const allNumberPostions = inputLines.flatMap((line, lineNumber) =>
+	[...line.matchAll(/\d+/dg)].map((match) => {
 		const [start, end] = match.indices[0];
 		return { lineNumber, start, end, value: parseInt(match[0]) };
-	});
-});
+	})
+);
 
 function part1() {
 	return allNumberPostions
-		.filter(({ lineNumber, start, end }) => {
-			return getAdjacentPositions(lineNumber, start, end).some(([lineNumber, position]) =>
+		.filter(({ lineNumber, start, end }) =>
+			getAdjacentPositions(lineNumber, start, end).some(([lineNumber, position]) =>
 				checkIsSymbol(inputLines, lineNumber, position)
-			);
-		})
+			)
+		)
 		.reduce((sum, { value }) => sum + value, 0);
 }
 
 function part2() {
 	let sumOfGearRatios = 0;
 
-	const allStarPositions = inputLines.flatMap((line, lineNumber) => {
-		return [...line.matchAll(/\*/dg)].map((match) => {
+	const allStarPositions = inputLines.flatMap((line, lineNumber) =>
+		[...line.matchAll(/\*/dg)].map((match) => {
 			const [start, end] = match.indices[0];
 			return { lineNumber, start, end };
-		});
-	});
+		})
+	);
 
 	for (const { lineNumber, start, end } of allStarPositions) {
 		const adjacentPositions = getAdjacentPositions(lineNumber, start, end);
